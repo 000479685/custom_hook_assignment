@@ -1,25 +1,29 @@
 import './App.css'
-import { useLogger } from './hooks/useLogger'
+import useLogger from './hooks/useLogger';
 
-export default function App()
+export default function App(valid)
 {  
-  return (
-  <form action={useLogger}>
+  const logger = useLogger()
+
+  return (  
+  <form {...logger}>
     <label>
       SCOPE: 
-      <input name='scope' />
+      <input name='scope'
+      required/>
     </label>
     <label>
       MESSAGE: 
-      <input name='message' />
+      <input name='message' 
+      required/>
     </label>
-    <select name="type" id="">
+    <select name='type'>
       <option value="error">ERROR</option>
       <option value="warn">WARN</option>
       <option value="log">LOG</option>
       <option value="debug">DEBUG</option>
     </select>
-    <button type='submit'>Submit</button>
+    <button type='submit'>Submit</button>  
   </form>
   )
 }
